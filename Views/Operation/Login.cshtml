@@ -1,78 +1,28 @@
-﻿
-
+﻿@{
+    Layout = null;
+    ViewBag.title = "Login";
+}
 @model LoginAdmin
 
-<h2>Login</h2>
-
-
-<form asp-action="Login" method="post">
-    <div class="form-group">
-        <label for="phone">Phone Number:</label>
-        <input type="text" class="form-control" id="phone" name="phone" required>
-    </div>
-    <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" class="form-control" id="password" name="password" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Login</button>
-</form>
-
-@*@model Dashboard.Models.LoginAdmin
-@{
-    ViewBag.Title = "Login";
-    Layout = null;
-
-}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile </title>
-    <link href="~/Attach/icon.png" rel="icon" />
-
-    <link rel="stylesheet" href="~/Content/CSS/login.css" />
-
-</head>
-<body style="background-color:#eee">
-    <div style="display:flex;justify-content:center; align-content:center; margin-top:150px">
-        <div class="wrapper">
-            <div class="title" style="text-align:center">
-                Login
-                <p>It's quick and easy</p>
-            </div>
-            <form method="post">
-
-                <div class="field">
-                    @Html.TextBoxFor(n => n.Phone, new { @class = "inputs" })
-                    <label for="">Phone Number</label>
-                    @Html.ValidationMessageFor(n => n.Phone)
-                </div>
-
-                <div class="field">
-                    @Html.PasswordFor(n => n.Password, new { @class = "inputs" })
-                    <label>Password</label>
-                    <span style="color:red;margin-bottom : 25px  ">@Html.ValidationMessageFor(n => n.Password)</span>
-                </div>
-
-                <div class="content">
-                    <div class="checkbox">
-                        @Html.CheckBox("saveme", false, new { @class = "inputs" })
-                        <label for="remember-me">Remember Me</label>
-                    </div>
-                    <div class="pass-link">
-                        <a href="#">Forgot password?</a>
-                    </div>
-                </div>
-                <div class="field">
-                    <input type="submit" value="login" class="inputs" />
-                </div>
-
-                <div class="signup-link">
-                    Don't' have an account?<a href="#"> Sign Up</a>
-                </div>
-            </form>
+ <link rel="stylesheet" type="text/css" href="~/css/Login.css">
+ <link rel="icon"  href="~/Attach/icon.png">
+ <title>Login</title>
+<div class="container">
+      <form asp-action="Login" method="post"> 
+        <h1>Login</h1>
+        <div class="input-box">
+          <img src="~/Attach/icons8-phone-24.png">
+          <input asp-for="Phone" placeholder="Enter Phone Number">
+          <span asp-validation-for="Phone" style="color:red ; font-size : 12px ; text-align:left ; margin-top:5px"></span>
         </div>
+        <div class="input-box">
+          <input type="password" asp-for="Password" placeholder="Enter Your Password">
+          <span asp-validation-for="Password" style="color:red ; font-size : 12px ;"></span>
+
+          <img src="~/Attach/icons8-lock-24.png">
+        </div>
+        <span style="color:red ; font-size : 12px ;"> @ViewBag.msg</span>
+        <button type="submit">Login</button>
+            <a href="#" class="forgot-password">Forgot Password</a>
+      </form>
     </div>
-</body>
-</html>*@

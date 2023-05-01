@@ -30,30 +30,38 @@ namespace Dashboard.Controllers
         [HttpPost]
         public ActionResult Login(LoginAdmin login, bool saveme)
         {
-            var Result = client.GetAsync("admin/getloginadmin/" + login.Phone + "/" + login.Password).Result;
-            var admin = Result.Content.ReadAsAsync<Admin>().Result;
-
-            if (admin != null)
+            try
             {
+                var Result = client.GetAsync("admin/getloginadmin/" + login.Phone + "/" + login.Password).Result;
+                var admin = Result.Content.ReadAsAsync<Admin>().Result;
 
-                //if (saveme == true)
-                //{
-                //    HttpCookie co = new HttpCookie("logindata");
-                //    co.Values.Add("id", admin.Id.ToString());
-                //    co.Values.Add("name", admin.Name);
-                //    co.Values.Add("Admin", admin.ToString());
+                if (admin != null)
+                {
 
-                //    co.Expires = DateTime.Now.AddDays(1);
+                    //if (saveme == true)
+                    //{
+                    //    HttpCookie co = new HttpCookie("logindata");
+                    //    co.Values.Add("id", admin.Id.ToString());
+                    //    co.Values.Add("name", admin.Name);
+                    //    co.Values.Add("Admin", admin.ToString());
 
-                //    Response.Cookies.Add(co);
-                //}
+                    //    co.Expires = DateTime.Now.AddDays(1);
 
-                HttpContext.Session.SetInt32("AdminId", admin.Id);
+                    //    Response.Cookies.Add(co);
+                    //}
 
-                return RedirectToAction("view", "admin");
+                    HttpContext.Session.SetInt32("AdminId", admin.Id);
+
+                    return RedirectToAction("view", "admin");
+                }
+                else
+                {
+                    return View();
+                }
             }
-            else
+            catch
             {
+                ViewBag.msg = "Phone or Password Not Correct";
                 return View();
             }
         }

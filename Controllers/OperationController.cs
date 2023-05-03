@@ -28,7 +28,7 @@ namespace Dashboard.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(LoginAdmin login, bool saveme)
+        public ActionResult Login(LoginAdmin login, bool saveMe)
         {
             try
             {

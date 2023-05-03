@@ -20,6 +20,10 @@
             <input type="password" asp-for="Password" style="border: 1px solid black ; border-radius : 10px; outline : none;" placeholder="Enter Your Password">
             <span asp-validation-for="Password" style="color:red ; font-size : 12px ;"></span>
         </div>
+        <div style="display:block ; padding-bottom:15px;">
+            <input type="checkbox" asp-for="saveMe" style="display:inline; width:fit-content">
+            <span> Remember Me</span>
+        </div>
         <span style="color:red ; font-size : 12px ;"> @ViewBag.msg</span>
         <button type="submit">Login</button>
         <a href="#" class="forgot-password">Forgot Password</a>

@@ -65,13 +65,10 @@ namespace Dashboard.Controllers
                 return View();
             }
         }
+
         public ActionResult Logout()
         {
             HttpContext.Session.SetInt32("AdminId", 0);
-
-            //HttpCookie c = new HttpCookie("logindata");
-            //c.Expires = DateTime.Now.AddDays(-2);
-            //Response.Cookies.Add(c);
 
             return RedirectToAction("login");
         }

@@ -45,61 +45,60 @@
         </div>
 
     </header>
-
-    <div class="main-container">
+        <div class="main-container">
         <div class="navcontainer">
             <nav class="nav">
                 <div class="nav-upper-options">
                     
                     <div class="nav-option option3">
                         <a asp-action="view" asp-controller="admin" class = "logout-link">
-                            <img src="~/Attach/icon.png"
+                            <img src="~/Attach/icons8-admin-settings-male-96.png"
                              class="nav-img"
-                             alt="report"> All Admins</a>
+                             alt="report"> Admins</a>
+                    </div>
+                    <div class="nav-option option3">
+                        <a asp-action="show" asp-controller="user" class = "logout-link">
+                            <img src="~/Attach/icons8-users-96.png"
+                             class="nav-img"
+                             alt="report"> Users</a>
+                    </div>
+                    <div class="nav-option option3">
+                        <a asp-action="show" asp-controller="post" class = "logout-link">
+                            <img src="~/Attach/icons8-posts-60.png"
+                             class="nav-img"
+                             alt="report"> Posts</a>
+                    </div>
+                    <div class="nav-option option3">
+                        <a asp-action="show" asp-controller="news" class = "logout-link">
+                            <img src="~/Attach/icons8-news-96.png"
+                             class="nav-img"
+                             alt="report"> News</a>
                     </div>
                     <div class="nav-option option3">
                         <a asp-action="view" asp-controller="admin" class = "logout-link">
-                            <img src="~/Attach/icon.png"
+                            <img src="~/Attach/icons8-account-96.png"
                              class="nav-img"
-                             alt="report">Users</a>
-                    </div>
-                    <div class="nav-option option3">
-                        <a asp-action="view" asp-controller="admin" class = "logout-link">
-                            <img src="~/Attach/icon.png"
-                             class="nav-img"
-                             alt="report">Posts</a>
-                    </div>
-                    <div class="nav-option option3">
-                        <a asp-action="view" asp-controller="admin" class = "logout-link">
-                            <img src="~/Attach/icon.png"
-                             class="nav-img"
-                             alt="report">News</a>
-                    </div>
-                    <div class="nav-option option3">
-                        <a asp-action="view" asp-controller="admin" class = "logout-link">
-                            <img src="~/Attach/icon.png"
-                             class="nav-img"
-                             alt="report">Profile</a>
+                             alt="report"> Profile</a>
                     </div>
                         <div class="nav-option option3">
                         <a asp-action="view" asp-controller="admin" class = "logout-link">
-                            <img src="~/Attach/icon.png"
+                            <img src="~/Attach/icons8-gear-100.png"
                              class="nav-img"
-                             alt="report">Settings</a>
+                             alt="report"> Settings</a>
                     </div>
                     <div class="nav-option option3">
-                        <a asp-action="view" asp-controller="admin" class = "logout-link">
-                            <img src="~/Attach/icon.png"
+                        <a asp-action="logout" asp-controller="operation" class = "logout-link">
+                            <img src="~/Attach/icons8-logout-96.png"
                              class="nav-img"
-                             alt="report">Logout</a>
+                             alt="report"> Logout</a>
                     </div>
 
                 </div>
             </nav>
         </div>
-
     <div >
-            @RenderBody()
+        @RenderBody()
+    </div>
     </div>
     <script src="~/Content/Js/Home.js"></script>
 </body>

@@ -65,7 +65,28 @@ namespace Dashboard.Controllers
 
         public new ActionResult Profile()
         {
-            return View();
+
+            int id = HttpContext.Session.GetInt32("AdminId").Value;
+
+            try
+            {
+                var result = client.GetAsync("admin/getadmin/"+id).Result;
+
+                var admin = result.Content.ReadAsAsync<Admin>().Result;
+
+                if (admin == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(admin);
+                }
+            }
+            catch
+            {
+                return View("Error");
+            }
         }
 
         public ActionResult Delete(int id)

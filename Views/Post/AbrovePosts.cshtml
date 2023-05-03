@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Test.Models.Post>
+
+@{
+    ViewBag.Title = "All Posts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin:20px">
+    <a asp-action="show" asp-controller="post" style="color:white" class="btn btn-info">Go To All Posts</a>
+</div>
+
+<link rel="stylesheet" href="~/Content/CSS/allposts.css" />
+<div class="container">
+    <div class="grid">
+        @{
+            foreach (var post in Model)
+            {
+                <div class="card">
+                    <div class="card_img">
+                        <img src="~/Attach/@post.Img" alt="">
+                    </div>
+                    <div class="card_body">
+                        <p>@post.Content</p>
+                        <a asp-action="Abrove" asp-controller="post" style="color:white" class="btn btn-info">Abrove</a>
+                        <a asp-action="Delete" asp-controller="post" style="color:white" asp-route-Id="@post.Id" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

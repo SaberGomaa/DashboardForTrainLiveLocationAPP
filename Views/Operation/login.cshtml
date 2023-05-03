@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+    ViewBag.title = "Login";
+}
+@model LoginAdmin
+ <link rel="stylesheet" type="text/css" href="~/css/Login.css">
+ <link rel="icon"  href="~/Attach/icon.png">
+ <title>Login</title>
+
+<div class="container">
+    <form asp-action="Login" method="post"> 
+        <h1>Login</h1>
+        <div class="input-box">
+            <img src="~/Attach/icons8-phone-24.png">
+            <input asp-for="Phone" style="border: 1px solid black ; border-radius : 10px; outline : none;" placeholder="Enter Phone Number">
+            <span asp-validation-for="Phone" style="color:red ; font-size : 12px ; text-align:left ; margin-top:5px"></span>
+        </div>
+        <div class="input-box">
+            <img src="~/Attach/icons8-lock-24.png">
+            <input type="password" asp-for="Password" style="border: 1px solid black ; border-radius : 10px; outline : none;" placeholder="Enter Your Password">
+            <span asp-validation-for="Password" style="color:red ; font-size : 12px ;"></span>
+        </div>
+        <span style="color:red ; font-size : 12px ;"> @ViewBag.msg</span>
+        <button type="submit">Login</button>
+        <a href="#" class="forgot-password">Forgot Password</a>
+    </form>
+</div>

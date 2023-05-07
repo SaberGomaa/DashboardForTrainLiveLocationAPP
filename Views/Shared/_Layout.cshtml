@@ -12,11 +12,11 @@
 <body>
 
     <!-- for header part -->
-    <header>
+    <header style="padding:0 25px ">
 
         <div class="logosec">
             <div class="logo"><img src="~/Attach/icon.png" height="40" width="40" style="background-color: #3f0097; border-radius: 50%; padding: 3px"/></div>
-            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210182541/Untitled-design-(30).png"
+            <img src="~/Attach/icons8-menu-rounded-96.png"
                  class="icn menuicn"
                  id="menuicn"
                  alt="menu-icon">
@@ -34,7 +34,7 @@
 
         <div class="message">
             <div class="circle"></div>
-            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183322/8.png"
+            <img src="~/Attach/icons8-notification-100.png"
                  class="icn"
                  alt="">
             <a class="dp" asp-action="profile" asp-controller="admin" >
@@ -80,6 +80,12 @@
                              class="nav-img"
                              alt="report"> Profile</a>
                     </div>
+                    <div class="nav-option option3">
+                        <a asp-action="view" asp-controller="admin" class = "logout-link">
+                            <img src="~/Attach/icons8-unavailable-96.png"
+                             class="nav-img"
+                             alt="report"> Reports</a>
+                    </div>
                         <div class="nav-option option3">
                         <a asp-action="view" asp-controller="admin" class = "logout-link">
                             <img src="~/Attach/icons8-gear-100.png"
@@ -96,11 +102,23 @@
                 </div>
             </nav>
         </div>
-    <div >
+    <div style="width:100%">
         @RenderBody()
     </div>
     </div>
-    <script src="~/Content/Js/Home.js"></script>
+    <footer style="background-color: rgb(55, 206, 235) ;margin-top:60px ; padding-top:15px">
+        <div class="containe">
+            <ul class="social-icons">
+            <li><a href="#"><img src="~/Attach/icons8-facebook-96.png"></a></li>
+            <li><a href="#"><img src="~/Attach/icons8-twitter-squared-96.png"></a></li>
+            <li><a href="#"><img src="~/Attach/icons8-google-play-store-96.png"></a></li>
+            <li><a href="#"><img src="~/Attach/icons8-linkedin-96.png"></a></li>
+            <li><a href="#"><img src="~/Attach/icons8-website-96.png"></a></li>
+            <li><a href="#"><img src="~/Attach/icons8-gmail-96.png"></a></li>
+            <li>&copy; 2023 Train Live Location . All rights reserved</li>
+            </ul>
+        </div>
+    </footer>
 </body>
 
 @*<body>

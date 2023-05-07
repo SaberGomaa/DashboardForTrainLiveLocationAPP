@@ -1,65 +1,36 @@
 ﻿@model IEnumerable<Test.Models.Admin>
 
 @{
-    ViewData["Title"] = "view";
+    ViewData["Title"] = "Admins";
 }
 
-<h1>view</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AdminDegree)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AdminDegree)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<link rel="stylesheet" href="~/css/ViewAdminsStyle.css"/>
+
+ <a asp-action="Crearte" asp-controller="admin" style="margin:15px"> 
+     <img src="~/Attach/icons8-add-user-male-96.png" />
+     Add Admin
+ </a>
+
+<main style="margin:10px;">
+    <div class="admins-grid">
+        @foreach(var i in Model){
+        <div class="admin">
+            <img src="~/Attach/icons8-admin-settings-male-96.png" alt="Profile Picture">
+            <div class="admin-info">
+                <h3>@i.Name</h3>
+                <p>Administrator</p>
+                <ul>
+                    <li><strong>Email:</strong> @i.Email</li>
+                    <li><strong>Phone:</strong> @i.Phone</li>
+                    <li><strong>Admin Degree:</strong> @i.AdminDegree</li>
+                </ul>
+            </div>
+            <div style="display:flex; justify-content:space-between">
+                <a asp-action="Profile" asp-controller="admin" asp-route-id="@i.Id" class="btn btn-info " style="margin-right:15px">  Admin Profile </a>
+                <a asp-action="delete" asp-controller="admin" asp-route-id="@i.Id" class="btn btn-danger"> Delete Admin </a>
+            </div>
+        </div>
+        }
+    </div>
+</main>

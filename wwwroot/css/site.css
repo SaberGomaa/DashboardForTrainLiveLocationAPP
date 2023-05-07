@@ -442,3 +442,42 @@ header {
         height: 27px;
     }
 }
+
+
+footer {
+    background-color: #1e1d1d;
+    padding: 0px 0;
+    text-align: center;
+    z-index:5;
+}
+
+
+li {
+    color: black;
+}
+
+.containe {
+    max-width: 960px;
+    margin: 0 auto;
+    
+}
+
+p {
+    margin-bottom: 10px;
+    color: aliceblue;
+}
+
+.social-icons {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+    .social-icons li {
+        margin-right: 10px;
+    }
+
+    .social-icons img {
+        width: 30px;
+        height: 30px;
+    }

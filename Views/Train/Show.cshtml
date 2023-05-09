@@ -1,0 +1,40 @@
+﻿@using Test.Models
+
+@model List<Train>
+
+@{
+    ViewData["Title"] = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<link rel="stylesheet" href="~/css/ViewAdminsStyle.css"/>
+
+ <a asp-action="Create" asp-controller="train" style="margin:15px"> 
+     <img src="~/Attach/icons8-add-96.png" width="50" height="50"/>
+     New Train
+ </a>
+
+<main style="margin:10px;">
+    <div class="admins-grid">
+        @foreach (var i in Model)
+        {
+            <div class="admin">
+                <img src="~/Attach/icons8-railway-station-96.png" alt="Profile Picture">
+                <div class="admin-info">
+                    <h3>Train Number @i.Id</h3>
+                    <ul>
+                            <li><strong>Number Of Seats :</strong> @i.NumOfSeat</li>
+                        <li><strong>Cars Number:</strong> @i.NumOfTrainCars</li>
+                        <li><strong>Degree:</strong> @i.Degree</li>
+                    </ul>
+                </div>
+                <div style="display:flex; justify-content:space-between">
+                    <a asp-action="Edit" asp-controller="Train" asp-route-id="@i.Id" class="btn btn-info " style="margin-right:15px"> Edit </a>
+                    <a asp-action="delete" asp-controller="Train" asp-route-id="@i.Id" class="btn btn-danger"> Delete </a>
+                </div>
+            </div>
+        }
+    </div>
+</main>

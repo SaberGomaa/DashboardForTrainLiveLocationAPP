@@ -1,0 +1,65 @@
+﻿@model Test.Models.Train
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Train</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Degree" class="control-label"></label>
+               <select asp-for="Degree"  class="form-control">
+                    <option name="a">Class A</option>
+                    <option name="b">Class B</option>
+                    <option name="c">Class C</option>
+                </select>
+                <span asp-validation-for="Degree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumOfSeat" class="control-label"></label>
+                <input asp-for="NumOfSeat" class="form-control" />
+                <span asp-validation-for="NumOfSeat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrainNumber" class="control-label"></label>
+                <input asp-for="TrainNumber" class="form-control" />
+                <span asp-validation-for="TrainNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumOfTrainCars" class="control-label"></label>
+                <input asp-for="NumOfTrainCars" class="form-control" />
+                <span asp-validation-for="NumOfTrainCars" class="text-danger"></span>
+            </div>
+            <div class="form-group  visually-hidden" >
+                <label asp-for="Conductor" class="control-label"></label>
+                <input asp-for="Conductor" class="form-control" />
+                <span asp-validation-for="Conductor" class="text-danger"></span>
+            </div>
+            <div class="form-group  visually-hidden">
+                <label asp-for="Driver" class="control-label"></label>
+                <input asp-for="Driver" class="form-control" />
+                <span asp-validation-for="Driver" class="text-danger"></span>
+            </div>
+            <div class="form-group  visually-hidden">
+                <label asp-for="CurrentLocation" class="control-label"></label>
+                <input asp-for="CurrentLocation" class="form-control" />
+                <span asp-validation-for="CurrentLocation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

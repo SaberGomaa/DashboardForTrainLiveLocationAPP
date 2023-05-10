@@ -6,23 +6,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Register"  method="post">
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" style="color:red ; font-size : 12px ; text-align:left ; margin-top:5px"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Phone" class="control-label"></label>
-                <input asp-for="Phone" class="form-control" />
-                <span asp-validation-for="Phone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="card p-3" style="display:grid;justify-content:center ; margin:100px; height:500px; box-shadow:5px 5px 5px 5px  #87CEEB ; border-radius:15px">
+    <h1 class="text-center" style="color:#414141">Add New Admin</h1>
+    <hr />
+    <div style="line-height:1; font-size:14px">
+        <p style="color:#414141 ; text-align:center">Enter Admin Name And Phone</p>
+        <p  style="color:#414141 ; text-align:center">When Admin Login For First Time Using Phone As Password</p>
+        <p style="color:#414141 ; text-align:center">And Complete It's Information After Login .</p>
     </div>
+    <hr />
+
+    <form method="POST" action="#">
+        <div class="form-group mb-3" >
+            <input asp-for="Name" style="font-size:14px; color:black; text-align:center;border: 1px solid #1f1f1f ; border-radius : 10px;  outline:none ; box-shadow:none; height:40px " class="form-control" placeholder="Enter Admin Name"/>
+            <span asp-validation-for="Name" class="text-danger"  style="font-size:12px;"></span>
+        </div>
+                
+        <div class="form-group mb-3">
+            <input asp-for="Phone" style="font-size:14px; color:black; text-align:center;border: 1px solid #1f1f1f ; border-radius : 10px;  outline:none ; box-shadow:none; height:40px" class="form-control" placeholder="Enter Admin Phone" />
+            <span asp-validation-for="Phone" class="text-danger" style="font-size:12px"></span>
+        </div>
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary"> Add Now! </button>
+        </div>
+    </form>
 </div>

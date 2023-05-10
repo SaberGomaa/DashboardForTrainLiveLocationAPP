@@ -26,7 +26,11 @@ namespace Dashboard.Controllers
         [HttpPost]
         public ActionResult Register(Admin admin)
         {
-            admin.Id = 0;
+            admin.Password = admin.Phone;
+            admin.Email = "null";
+            admin.AdminDegree = "A";
+            admin.FirstTime = true;
+
             var result = client.PostAsJsonAsync("admin/createadmin", admin).Result;
 
             if (result.IsSuccessStatusCode)

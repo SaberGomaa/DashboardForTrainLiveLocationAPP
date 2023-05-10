@@ -13,6 +13,7 @@ namespace Test.Models
         public int Id { get; set; }
         
         [Required(ErrorMessage ="Required")]
+        [MinLength(3, ErrorMessage = "Name Length at least 3 Characters")]
         public string Name { get; set; }
         
         [Required(ErrorMessage = "Required")]
@@ -20,6 +21,8 @@ namespace Test.Models
         public string  Email { get; set; }
         
         [Required(ErrorMessage ="Required")]
+        [RegularExpression("^01[0125][0-9]{8}$", ErrorMessage = "Not Vaild Phone Number")]
+
         public string Phone { get; set; }
 
         [Required(ErrorMessage ="Required")]

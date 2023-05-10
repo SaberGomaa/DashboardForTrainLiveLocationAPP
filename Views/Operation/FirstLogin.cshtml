@@ -2,10 +2,9 @@
 
 @{
     Layout = null;
+    ViewBag.title = "Login";
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -13,53 +12,46 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="icon" href="~/Attach/icon.png" />
 
+     <link rel="stylesheet" type="text/css" href="~/css/Login.css">
+     <link rel="icon"  href="~/Attach/icon.png">
+
 </head>
 <body>
-
-<h4>Complete Registration information</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="FirstLogin">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-             <input asp-for="Id" style="visibility:hidden" class="form-control" />
-
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Phone" class="control-label"></label>
-                <input asp-for="Phone" class="form-control" />
-                <span asp-validation-for="Phone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" type="password" class="form-control" />
-                <span asp-validation-for="Password"  class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ConfirmPassword" class="control-label"></label>
-                <input asp-for="ConfirmPassword" type="password" class="form-control" />
-                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-            </div>
-           
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-</body>
+    <div class="container">
+            <form asp-action="firstlogin" method="post" > 
+                <h1>Complete Registration Information</h1>
+                <hr />
+                <div class="input-box">
+                    <img src="~/Attach/icons8-user-24 (1).png" />
+                    <input asp-for="Name" style="border: 1px solid #1f1f1f ; border-radius : 10px; outline : none;" placeholder="FullName">
+                    <span asp-validation-for="Name" style="color:red ; font-size : 12px ; text-align:left ; margin-top:5px"></span>
+                </div>
+                 <div class="input-box">
+                    <img src="~/Attach/icons8-phone-24.png">
+                    <input asp-for="Phone" style="border: 1px solid #1f1f1f ; border-radius : 10px; outline : none;" placeholder=" Phone Number">
+                    <span asp-validation-for="Phone" style="color:red ; font-size : 12px ; text-align:left ; margin-top:5px"></span>
+                </div>
+                <div class="input-box">
+                    <img src="~/Attach/icons8-email-24.png">
+                    <input asp-for="Email" style="border: 1px solid #1f1f1f ; border-radius : 10px; outline : none;" placeholder="Email">
+                    <span asp-validation-for="Email" style="color:red ; font-size : 12px ; text-align:left ; margin-top:5px"></span>
+                </div>
+                <div class="input-box">
+                    <img src="~/Attach/icons8-lock-24.png">
+                    <input type="password" asp-for="Password" style="border: 1px solid #1f1f1f ; border-radius : 10px; outline : none;" placeholder="Password">
+                    <span asp-validation-for="Password" style="color:red ; font-size : 12px ;"></span>
+                </div>
+                  <div class="input-box">
+                    <img src="~/Attach/icons8-lock-24.png">
+                    <input type="password" asp-for="ConfirmPassword" style="border: 1px solid #1f1f1f ; border-radius : 10px; outline : none;" placeholder="Confirm Password">
+                    <span asp-validation-for="ConfirmPassword" style="color:red ; font-size : 12px ;"></span>
+                </div>
+                <button type="submit">Save And Go to Login</button>
+            </form>
+         </div>
+    </body>
 </html>
- <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

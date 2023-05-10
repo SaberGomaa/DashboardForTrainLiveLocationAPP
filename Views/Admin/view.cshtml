@@ -8,15 +8,14 @@
 <link rel="stylesheet" href="~/css/ViewAdminsStyle.css"/>
 
  <a asp-action="Register" asp-controller="admin" style="margin:15px"> 
-     <img src="~/Attach/icons8-add-user-male-96.png" />
-     Add Admin
+     <img src="~/Attach/icons8-add-user-male-96.png" width="50" height="50" title="Add New Admin" style="margin:10px"/>
  </a>
 
 <main style="margin:10px;">
     <div class="admins-grid">
         @foreach(var i in Model){
         <div class="admin">
-            <img src="~/Attach/icons8-admin-settings-male-96.png" alt="Profile Picture">
+            <img src="~/Attach/icons8-admin-settings-male-96.png"   alt="Profile Picture">
             <div class="admin-info">
                 <h3>@i.Name</h3>
                 <p>Administrator</p>

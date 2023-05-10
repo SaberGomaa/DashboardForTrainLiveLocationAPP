@@ -79,7 +79,7 @@ header {
 }
 
 .searchbar input {
-    width: 250px;
+    width: 450px;
     height: 42px;
     border-radius: 50px 0 0 50px;
     background-color: var(--background-color3);

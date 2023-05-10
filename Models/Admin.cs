@@ -16,6 +16,7 @@ namespace Test.Models
         public string Name { get; set; }
         
         [Required(ErrorMessage = "Required")]
+        [RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$", ErrorMessage = "Not Vaild Email")]
         public string  Email { get; set; }
         
         [Required(ErrorMessage ="Required")]
@@ -23,9 +24,16 @@ namespace Test.Models
 
         [Required(ErrorMessage ="Required")]
         public string Password { get; set; }
-        
+
+        [NotMapped]
+        [Required(ErrorMessage = "Required")]
+        [Compare("Password", ErrorMessage ="Not Matched Passwored")]
+        public string ConfirmPassword { get; set; }
+
         [Required(ErrorMessage = "Required")]
         public string AdminDegree { get; set; }
+
+        public bool FirstTime { get; set; }
 
         public ICollection<News> News { get; set; }
 

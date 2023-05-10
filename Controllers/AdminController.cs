@@ -46,8 +46,8 @@ namespace Dashboard.Controllers
             {
                 var result = client.GetAsync("admin/getadmins").Result;
 
-                var admins = result.Content.ReadAsAsync<List<Admin>>().Result;
-
+                var a = result.Content.ReadAsAsync<List<Admin>>().Result;
+                var admins = a.Where(a=>a.FirstTime == false).ToList();
                 if (admins == null)
                 {
                     return RedirectToAction("Index");

@@ -34,7 +34,9 @@ namespace Dashboard.Controllers
             {
                 var Result = client.GetAsync("admin/getloginadmin/" + login.Phone + "/" + login.Password).Result;
                 var admin = Result.Content.ReadAsAsync<Admin>().Result;
-
+                
+                if(admin.FirstTime == true) return RedirectToAction("FirstLogin" , new {id = admin.Id , name = admin.Name , phone = admin.Phone});
+                
                 if (admin != null)
                 {
 
@@ -63,6 +65,28 @@ namespace Dashboard.Controllers
             {
                 ViewBag.msg = "Phone or Password Not Correct";
                 return View();
+            }
+        }
+
+
+        public ActionResult FirstLogin(int id , string name , string phone) 
+        { 
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult FirstLogin(Admin admin) 
+        {
+            admin.FirstTime = false;
+            admin.AdminDegree = "A";
+            var result = client.PutAsJsonAsync("Admin/UpdateAdmin/" + admin.Id, admin).Result;
+            if (result.IsSuccessStatusCode)
+            {
+                return RedirectToAction("login");
+            }
+            else
+            {
+                return View("Error");
             }
         }
 

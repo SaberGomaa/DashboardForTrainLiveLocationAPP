@@ -2,54 +2,69 @@
 
 @{
     ViewData["Title"] = "Profile";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Profile</h1>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Profile</title>
 
-<div>
-    <h4>Admin</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AdminDegree)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AdminDegree)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+	<style>
+		.container {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.profile {
+	text-align: center;
+	padding: 30px;
+	background-color: #f2f2f2;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.profile img {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-bottom: 20px;
+}
+
+.profile h1 {
+	font-size: 36px;
+	margin-bottom: 10px;
+}
+
+.profile p {
+	margin-bottom: 5px;
+}
+
+.profile a {
+	color: black;
+	text-decoration: none;
+	margin: 0 30px;
+
+}
+p{
+	color:black;
+	font-family: auto;
+	line-height: 2.8;
+
+}
+	</style>
+</head>
+<body>
+	<div class="container" >
+        <div class="profile" style="margin-top: 100px;height: 550px;">
+			<img src="~/Attach/icons8-admin-settings-male-96.png" alt="My Profile Picture">
+			<h1>@Model.Name</h1>
+			<p>Administrator</p>
+			<p>Email: @Model.Email</p>
+			<p>Phone: @Model.Phone</p>
+			<a asp-action="Edit" asp-controller="admin" class="btn btn-info">Edit Profile </a>
+			<a asp-action="show" asp-controller="admin" class="btn btn-info">Go Back </a>
+		</div>
+	</div>
+</body>
+</html>

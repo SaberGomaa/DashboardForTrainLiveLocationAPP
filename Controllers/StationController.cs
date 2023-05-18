@@ -38,8 +38,6 @@ namespace Dashboard.Controllers
                 var result = client.GetAsync("Train/GetTrains").Result;
                 var trains = result.Content.ReadAsAsync<List<Train>>().Result;
 
-                //SelectList selTrains = new SelectList (trains.Select(c => new { Id = c.Id } ));
-
                 List<int> selTrains = trains.Select(x => x.Id).ToList();
 
                 ViewBag.Trains = selTrains;

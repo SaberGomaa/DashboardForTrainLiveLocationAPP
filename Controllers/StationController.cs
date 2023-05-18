@@ -70,5 +70,26 @@ namespace Dashboard.Controllers
                 return View("Error");
             }
         }
+
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                var result = client.DeleteAsync("station/DeleteStation?Id="+id).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("show");
+                }
+                else
+                {
+                    return View("Error");
+                }
+            }
+            catch
+            {
+                return View("Error");
+            }
+        }
+
     }
 }

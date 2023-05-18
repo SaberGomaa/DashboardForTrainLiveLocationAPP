@@ -35,53 +35,84 @@ namespace Dashboard.Controllers
         [HttpPost]
         public ActionResult Create(Train train)
         {
-            train.Conductor = "Conductor";
-            train.Driver = "Driver";
-            train.CurrentLocation = "CurrentLocation";
-            var result = client.PostAsJsonAsync("train/createtrain", train).Result;
-            if (result.IsSuccessStatusCode)
+            try
             {
-                return RedirectToAction("Show");
+                train.Conductor = "Conductor";
+                train.Driver = "Driver";
+                train.CurrentLocation = "CurrentLocation";
+                var result = client.PostAsJsonAsync("train/createtrain", train).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Show");
+                }
+                else
+                {
+                    return View();
+                }
             }
-            else
+            catch
             {
-                return View();
+                return View("Error");
             }
         }
 
-        public IActionResult Edit (int id)
+        public IActionResult Edit(int id)
         {
-            var result = client.GetAsync("train/GetTrainById?Id="+id).Result;
-            var train = result.Content.ReadAsAsync<Train>().Result;
-
-            return View(train);
-        }
-
-        [HttpPost]
-        public IActionResult Edit(int id , Train train)
-        {
-
-            var result = client.PutAsJsonAsync("train/UpdateTrain?trainId="+id, train).Result;
-
-            if(result.IsSuccessStatusCode)
+            try
             {
-                return RedirectToAction("show");
+                var result = client.GetAsync("train/GetTrainById?Id=" + id).Result;
+                var train = result.Content.ReadAsAsync<Train>().Result;
+
+                return View(train);
             }
-            else
+            catch
             {
                 return View("Error");
 
             }
         }
 
+        [HttpPost]
+        public IActionResult Edit(int id , Train train)
+        {
+            try
+            {
+                var result = client.PutAsJsonAsync("train/UpdateTrain?trainId=" + id, train).Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("show");
+                }
+                else
+                {
+                    return View("Error");
+
+                }
+            }
+            catch
+            {
+                return View("Error");
+            }
+        }
+
         public ActionResult Delete(int id)
         {
-            var result = client.DeleteAsync("train/DeleteTrain?Id="+id).Result;
-            if (result.IsSuccessStatusCode)
+            try
             {
-                return RedirectToAction("show");
+                var result = client.DeleteAsync("train/DeleteTrain?Id=" + id).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("show");
+                }
+                else
+                {
+                    return View("Error");
+                }
             }
-            return View("Error");
+            catch
+            {
+                return View("Error");
+            }
         }
 
     }

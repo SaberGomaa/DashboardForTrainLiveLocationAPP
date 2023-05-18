@@ -11,7 +11,7 @@ namespace Dashboard.Controllers
         public HttpClient client = new HttpClient();
         public NewsController(IWebHostEnvironment host)
         {
-            this.host= host;
+            this.host = host;
             client.BaseAddress = new Uri("http://saberelsayed-001-site1.itempurl.com/api/");
         }
         // GET: News
@@ -69,23 +69,30 @@ namespace Dashboard.Controllers
         [HttpPost]
         public ActionResult Edit(int id, updateNews news, IFormFile photo)
         {
-            if (photo != null)
+            try
             {
-                string attach = Path.Combine(host.WebRootPath, "Attach");
-                string fileName = photo.FileName;
-                string fullPath = Path.Combine(attach, fileName);
-                photo.CopyTo(new FileStream(fullPath, FileMode.Create));
+                if (photo != null)
+                {
+                    string attach = Path.Combine(host.WebRootPath, "Attach");
+                    string fileName = photo.FileName;
+                    string fullPath = Path.Combine(attach, fileName);
+                    photo.CopyTo(new FileStream(fullPath, FileMode.Create));
+                }
+
+                news.Img = photo.FileName;
+
+                var result = client.PutAsJsonAsync("news/updatenews?NewsId=" + id, news).Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Show");
+                }
+                else
+                {
+                    return View("Error");
+                }
             }
-
-            news.Img = photo.FileName;
-
-            var result = client.PutAsJsonAsync("news/updatenews?NewsId=" + id, news).Result;
-
-            if (result.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Show");
-            }
-            else
+            catch
             {
                 return View("Error");
             }
@@ -99,41 +106,53 @@ namespace Dashboard.Controllers
         [HttpPost]
         public ActionResult Create(updateNews news, IFormFile photo)
         {
-
-            if (photo != null)
+            try
             {
-                string attach = Path.Combine(host.WebRootPath, "Attach");
-                string fileName = photo.FileName;
-                string fullPath = Path.Combine(attach, fileName);
-                photo.CopyTo(new FileStream(fullPath, FileMode.Create));
+                if (photo != null)
+                {
+                    string attach = Path.Combine(host.WebRootPath, "Attach");
+                    string fileName = photo.FileName;
+                    string fullPath = Path.Combine(attach, fileName);
+                    photo.CopyTo(new FileStream(fullPath, FileMode.Create));
+                }
+
+                news.Img = photo.FileName;
+
+                var result = client.PostAsJsonAsync("news/createnews", news).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Show");
+                }
+                else
+                {
+                    return View();
+                }
             }
-
-            news.Img = photo.FileName;
-
-            var result = client.PostAsJsonAsync("news/createnews", news).Result;
-            if (result.IsSuccessStatusCode)
+            catch
             {
-                return RedirectToAction("Show");
-            }
-            else
-            {
-                return View();
+                return View("Error");
             }
         }
 
 
         public ActionResult Delete(int id)
         {
-            var result = client.DeleteAsync("news/deletenews?Id=" + id).Result;
-            if (result.IsSuccessStatusCode)
+            try
             {
-                return RedirectToAction("Show");
+                var result = client.DeleteAsync("news/deletenews?Id=" + id).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Show");
+                }
+                else
+                {
+                    return View("Error");
+                }
             }
-            else
+            catch
             {
                 return View("Error");
             }
         }
     }
-
 }

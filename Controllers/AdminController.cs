@@ -26,21 +26,28 @@ namespace Dashboard.Controllers
         [HttpPost]
         public ActionResult Register(Admin admin)
         {
-            admin.Password = admin.Phone;
-            admin.Email = "null";
-            admin.AdminDegree = "A";
-            admin.FirstTime = true;
-
-            var result = client.PostAsJsonAsync("admin/createadmin", admin).Result;
-
-            if (result.IsSuccessStatusCode)
+            try
             {
-                return RedirectToAction("view");
+                admin.Password = admin.Phone;
+                admin.Email = "null";
+                admin.AdminDegree = "A";
+                admin.FirstTime = true;
+
+                var result = client.PostAsJsonAsync("admin/createadmin", admin).Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("view");
+                }
+                else
+                {
+                    return View("Error");
+
+                }
             }
-            else
+            catch
             {
                 return View("Error");
-
             }
         }
 
@@ -70,10 +77,9 @@ namespace Dashboard.Controllers
         public new ActionResult Profile()
         {
 
-            int id = HttpContext.Session.GetInt32("AdminId").Value;
-
             try
             {
+                int id = HttpContext.Session.GetInt32("AdminId").Value;
                 var result = client.GetAsync("admin/getadmin/"+id).Result;
 
                 var admin = result.Content.ReadAsAsync<Admin>().Result;
@@ -95,19 +101,23 @@ namespace Dashboard.Controllers
 
         public ActionResult Delete(int id)
         {
-            var deleteAdmin = client.DeleteAsync("admin/DeleteAdmin/" + id).Result;
-
-            if (deleteAdmin.IsSuccessStatusCode)
+            try
             {
-                return RedirectToAction("view");
+                var deleteAdmin = client.DeleteAsync("admin/DeleteAdmin/" + id).Result;
+
+                if (deleteAdmin.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("view");
+                }
+                else
+                {
+                    return View("Error");
+                }
             }
-            else
+            catch
             {
                 return View("Error");
             }
         }
-
-
     }
-
 }

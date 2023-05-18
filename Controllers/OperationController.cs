@@ -77,16 +77,23 @@ namespace Dashboard.Controllers
         [HttpPost]
         public ActionResult FirstLogin(Admin admin) 
         {
-            admin.FirstTime = false;
-            admin.AdminDegree = "A";
-            var result = client.PutAsJsonAsync("Admin/UpdateAdmin/" + admin.Id, admin).Result;
-            if (result.IsSuccessStatusCode)
+            try
+            {
+                admin.FirstTime = false;
+                admin.AdminDegree = "A";
+                var result = client.PutAsJsonAsync("Admin/UpdateAdmin/" + admin.Id, admin).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("login");
+                }
+                else
+                {
+                    return View("Error");
+                }
+            }
+            catch
             {
                 return RedirectToAction("login");
-            }
-            else
-            {
-                return View("Error");
             }
         }
 

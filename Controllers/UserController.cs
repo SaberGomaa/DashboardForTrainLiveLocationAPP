@@ -20,39 +20,53 @@ namespace Dashboard.Controllers
 
         public new ActionResult Profile(int id)
         {
-            var result = client.GetAsync("user/getuserbyid?Id=" + id).Result;
+            try
+            {
+                var result = client.GetAsync("user/getuserbyid?Id=" + id).Result;
 
-            var user = result.Content.ReadAsAsync<User>().Result;
+                var user = result.Content.ReadAsAsync<User>().Result;
 
-            return View(user);
+                return View(user);
+            }
+            catch
+            {
+                return View("Error");
+            }
         }
 
         public ActionResult Show()
         {
-            var result = client.GetAsync("user/getusers").Result;
+            try
+            {
+                var result = client.GetAsync("user/getusers").Result;
 
-            var users = result.Content.ReadAsAsync<List<User>>().Result;
+                var users = result.Content.ReadAsAsync<List<User>>().Result;
 
-
-            return View(users);
+                return View(users);
+            }
+            catch { return View("Error"); }
         }
 
         public ActionResult Delete(int id)
         {
-            var result = client.DeleteAsync("user/DeleteUser?Id=" + id).Result;
-
-            if (result.IsSuccessStatusCode)
+            try
             {
-                return RedirectToAction("show");
-            }
+                var result = client.DeleteAsync("user/DeleteUser?Id=" + id).Result;
 
-            else
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("show");
+                }
+
+                else
+                {
+                    return View("Error");
+                }
+            }
+            catch
             {
                 return View("Error");
             }
-
         }
-
     }
-
 }

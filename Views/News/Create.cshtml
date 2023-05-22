@@ -1,31 +1,27 @@
-﻿@model Test.Models.News
+﻿@using Test.Models;
 
+@model News 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Add News";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
-
-<h4>News</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Img" class="control-label"></label>
-                <input type="file" name="photo" class="form-control" />
-                <span asp-validation-for="Img" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContentOfPost" class="control-label"></label>
-                <input asp-for="ContentOfPost" class="form-control" />
-                <span asp-validation-for="ContentOfPost" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="card p-3" style="display:grid;justify-content:center ; margin:100px; height:500px; box-shadow:5px 5px 5px 5px  #87CEEB ; border-radius:15px">
+    <h1 class="text-center" style="color:#414141">Add News</h1>
+    <hr />
+    <form asp-action="create" enctype="multipart/form-data" >
+        <div class="form-group mb-5" >
+            <input asp-for="ContentOfPost" style="font-size:14px; color:black; text-align:center;border: 1px solid #1f1f1f ; border-radius : 10px;  outline:none ; box-shadow:none; height:40px " class="form-control" placeholder="Enter Content Of News"/>
+            <span asp-validation-for="ContentOfPost" class="text-danger"  style="font-size:12px;"></span>
+        </div>
+                
+        <div class="form-group mb-5">
+            <input  type="file" name="photo" style="font-size:14px; color:black; text-align:center;border: 1px solid #1f1f1f ; border-radius : 10px;  outline:none ; box-shadow:none; height:40px" class="form-control"  />
+            <span asp-validation-for="Img" class="text-danger" style="font-size:12px"></span>
+        </div>
+        <div class="form-group text-center">
+            <input type="submit" value="Add Now!" class="btn btn-primary"/> 
+        </div>
+    </form>
 </div>
 

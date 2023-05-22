@@ -1,55 +1,32 @@
 ﻿@model IEnumerable<Test.Models.News>
 
 @{
-    ViewData["Title"] = "Show";
+    ViewData["Title"] = "News";
 }
 
-<h1>Show</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Img)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ContentOfPost)
-            </th>
-           
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                <img src="~/attach/@item.Img" width="100" height="100"/>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContentOfPost)
-            </td>
-           
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<link rel="stylesheet" href="~/css/ViewAdminsStyle.css"/>
+
+<a asp-action="create" asp-controller="news" style="margin:15px"> 
+     <img src="~/Attach/icons8-add-96.png" width="50" height="50" title="Add News" style="margin:10px"/>
+ </a>
+
+<main style="margin:10px ; border-radius: 10px;">
+    <div class="admins-grid">
+        @foreach(var i in Model){
+        <div class="admin">
+            <img src="~/Attach/@i.Img"   alt="Profile Picture">
+            <div class="admin-info">
+                <ul>
+                    <li><strong>Date :</strong> @i.date</li>
+                    <li><strong>Content :</strong> @i.ContentOfPost</li>
+                </ul>
+            </div>
+            <div style="display:flex; justify-content:space-between">
+                <a asp-action="Edit" asp-controller="news" asp-route-id="@i.Id" class="btn btn-info " style="margin-right:15px">  Edit </a>
+                <a asp-action="delete" asp-controller="news" asp-route-id="@i.Id" class="btn btn-danger"> Delete </a>
+            </div>
+        </div>
+        }
+    </div>
+</main>

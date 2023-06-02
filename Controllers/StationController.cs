@@ -18,6 +18,11 @@ namespace Dashboard.Controllers
 
             try
             {
+                int? x = HttpContext.Session.GetInt32("AdminId");
+                if (x == null)
+                {
+                    return RedirectToAction("login" , "operation");
+                }
                 var result = client.GetAsync("station/getallstation").Result;
                 
                 var stations = result.Content.ReadAsAsync<IEnumerable<Station>>().Result;
@@ -35,6 +40,11 @@ namespace Dashboard.Controllers
         {
             try
             {
+                int? x = HttpContext.Session.GetInt32("AdminId");
+                if (x == null)
+                {
+                    return RedirectToAction("login", "operation");
+                }
                 var result = client.GetAsync("Train/GetTrains").Result;
                 var trains = result.Content.ReadAsAsync<List<Train>>().Result;
 
@@ -55,6 +65,7 @@ namespace Dashboard.Controllers
         {
             try
             {
+
                 var result = client.PostAsJsonAsync("station/createstation", station).Result;
                 if (result.IsSuccessStatusCode)
                 {
@@ -75,6 +86,11 @@ namespace Dashboard.Controllers
         {
             try
             {
+                int? x = HttpContext.Session.GetInt32("AdminId");
+                if (x == null)
+                {
+                    return RedirectToAction("login", "operation");
+                }
                 var result = client.DeleteAsync("station/DeleteStation?Id="+id).Result;
                 if (result.IsSuccessStatusCode)
                 {

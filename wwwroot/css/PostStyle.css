@@ -1,0 +1,65 @@
+﻿.cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Set the height of the container to fill the viewport */
+}
+
+.post {
+    max-width: 600px;
+    /* Set a maximum width for the post */
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+}
+
+    .post-header img {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    .post-header h2 {
+        margin: 0;
+    }
+
+    .post-header p {
+        margin: 0;
+        font-size: 14px;
+        color: #777;
+    }
+
+.post-content img {
+    max-width: 100%;
+    margin-top: 10px;
+}
+
+.post-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+    .post-actions button {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #eee;
+        color: #333;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+        .post-actions button:hover {
+            background-color: #ddd;
+        }

@@ -1,98 +1,33 @@
 ﻿@model IEnumerable<Test.Models.Post>
 
 @{
-    ViewData["Title"] = "Show";
+    ViewData["Title"] = "Posts";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div style="margin:20px;" >
-    <a asp-action="AbrovePosts" asp-controller="post" style="color:white" class="btn btn-info">Abrove Critical Posts</a>
-</div>
+<link rel="stylesheet" href="~/css/PostStyle.css"/>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TrainNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Critical)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Img)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImgId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserPhone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AdminId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TrainNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Critical)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Img)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImgId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserPhone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AdminId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+@*<div style="margin:20px;" >
+    <a asp-action="AbrovePosts" asp-controller="post" style="color:white" class="btn btn-info">Abrove Critical Posts</a>
+</div>*@
+@foreach(var i in Model){
+<div class="cont">
+	<div class="post">
+		<div class="post-header">
+			<img src="~/Attach/saberJ.jpg" alt="Profile Picture">
+			<div>
+				<h5>@i.UserName</h5>
+				<p>@i.date</p>
+			</div>
+		</div>
+		<div class="post-content">
+			<p style="color:black">@i.Content</p>
+			<img src="~/Attach/saberJ.jpg" width=100% height="570"  alt="Post Image">
+		</div>
+		<div class="post-actions">
+			<button>Comments</button>
+			<button>Reports</button>
+		</div>
+	</div>
+</div>
 }
-    </tbody>
-</table>

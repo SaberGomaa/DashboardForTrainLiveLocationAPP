@@ -22,6 +22,11 @@ namespace Dashboard.Controllers
         {
             try
             {
+                int? x = HttpContext.Session.GetInt32("AdminId");
+                if (x == null)
+                {
+                    return RedirectToAction("login", "operation");
+                }
                 var result = client.GetAsync("user/getuserbyid?Id=" + id).Result;
 
                 var user = result.Content.ReadAsAsync<User>().Result;
@@ -38,6 +43,11 @@ namespace Dashboard.Controllers
         {
             try
             {
+                int? x = HttpContext.Session.GetInt32("AdminId");
+                if (x == null)
+                {
+                    return RedirectToAction("login", "operation");
+                }
                 var result = client.GetAsync("user/getusers").Result;
 
                 var users = result.Content.ReadAsAsync<List<User>>().Result;
@@ -51,6 +61,11 @@ namespace Dashboard.Controllers
         {
             try
             {
+                int? x = HttpContext.Session.GetInt32("AdminId");
+                if (x == null)
+                {
+                    return RedirectToAction("login", "operation");
+                }
                 var result = client.DeleteAsync("user/DeleteUser?Id=" + id).Result;
 
                 if (result.IsSuccessStatusCode)

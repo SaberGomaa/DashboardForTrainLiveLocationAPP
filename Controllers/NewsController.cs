@@ -24,6 +24,11 @@ namespace Dashboard.Controllers
         {
             try
             {
+                int? x = HttpContext.Session.GetInt32("AdminId");
+                if (x == null)
+                {
+                    return RedirectToAction("login", "operation");
+                }
                 var result = client.GetAsync("news/getnews").Result;
 
                 var news = result.Content.ReadAsAsync<List<News>>().Result;
@@ -47,6 +52,11 @@ namespace Dashboard.Controllers
         {
             try
             {
+                int? x = HttpContext.Session.GetInt32("AdminId");
+                if (x == null)
+                {
+                    return RedirectToAction("login", "operation");
+                }
                 var result = client.GetAsync("news/getnewsbyid?Id=" + id).Result;
 
                 var news = result.Content.ReadAsAsync<News>().Result;
@@ -100,6 +110,11 @@ namespace Dashboard.Controllers
 
         public ActionResult Create()
         {
+            int? x = HttpContext.Session.GetInt32("AdminId");
+            if (x == null)
+            {
+                return RedirectToAction("login", "operation");
+            }
             return View();
         }
 
@@ -139,6 +154,11 @@ namespace Dashboard.Controllers
         {
             try
             {
+                int? x = HttpContext.Session.GetInt32("AdminId");
+                if (x == null)
+                {
+                    return RedirectToAction("login", "operation");
+                }
                 var result = client.DeleteAsync("news/deletenews?Id=" + id).Result;
                 if (result.IsSuccessStatusCode)
                 {

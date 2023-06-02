@@ -21,6 +21,11 @@ namespace Dashboard.Controllers
         {
             try
             {
+                int? x = HttpContext.Session.GetInt32("AdminId");
+                if (x == null)
+                {
+                    return RedirectToAction("login", "operation");
+                }
                 var result = client.GetAsync("post/getallposts").Result;
 
                 var posts = result.Content.ReadAsAsync<List<Post>>().Result;

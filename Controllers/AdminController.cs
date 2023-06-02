@@ -20,6 +20,11 @@ namespace Dashboard.Controllers
 
         public ActionResult Register()
         {
+            int? x = HttpContext.Session.GetInt32("AdminId");
+            if (x == null)
+            {
+                return RedirectToAction("login", "operation");
+            }
             return View();
         }
 
@@ -55,6 +60,11 @@ namespace Dashboard.Controllers
         {
             try
             {
+                int? x = HttpContext.Session.GetInt32("AdminId");
+                if (x == null)
+                {
+                    return RedirectToAction("login", "operation");
+                }
                 var result = client.GetAsync("admin/getadmins").Result;
 
                 var a = result.Content.ReadAsAsync<List<Admin>>().Result;
@@ -79,6 +89,11 @@ namespace Dashboard.Controllers
 
             try
             {
+                int? x = HttpContext.Session.GetInt32("AdminId");
+                if (x == null)
+                {
+                    return RedirectToAction("login", "operation");
+                }
                 int id = HttpContext.Session.GetInt32("AdminId").Value;
                 var result = client.GetAsync("admin/getadmin/"+id).Result;
 
@@ -103,6 +118,11 @@ namespace Dashboard.Controllers
         {
             try
             {
+                int? x = HttpContext.Session.GetInt32("AdminId");
+                if (x == null)
+                {
+                    return RedirectToAction("login", "operation");
+                }
                 var deleteAdmin = client.DeleteAsync("admin/DeleteAdmin/" + id).Result;
 
                 if (deleteAdmin.IsSuccessStatusCode)

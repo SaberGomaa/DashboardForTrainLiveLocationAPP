@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Test.Models
 {
@@ -11,7 +7,8 @@ namespace Test.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Image is Required")]
+        [Required(ErrorMessage = "Please select an image")]
+        [DataType(DataType.Upload)]
         public string Img { get; set; }
         public DateTime? date { get; set; } = DateTime.Now;
 

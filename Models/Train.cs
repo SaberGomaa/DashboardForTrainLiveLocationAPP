@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace Test.Models
 {
     public class Train
     {
-        [Column("TrainId")]
         public int Id { get; set; }
+        [Required(ErrorMessage = "Required")]
+
         public string? Degree { get; set; }
+        [Required(ErrorMessage ="Required")]
         public string? TrainNumber { get; set; }
+        [Required(ErrorMessage ="Required")]
         public int NumOfSeat { get; set; }
+        [Required(ErrorMessage ="Required")]
         public double TrainTime { get; set; }
+        [Required(ErrorMessage ="Required")]
         public int NumOfTrainCars { get; set; }
         //////
         public string? Conductor { get; set; }

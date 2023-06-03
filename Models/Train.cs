@@ -15,6 +15,10 @@ namespace Test.Models
         public int NumOfSeat { get; set; }
         [Required(ErrorMessage ="Required")]
         public double TrainTime { get; set; }
+        [NotMapped]
+        public int TrainTimeH { get; set; }
+        [NotMapped]
+        public int TrainTimeM { get; set; }
         [Required(ErrorMessage ="Required")]
         public int NumOfTrainCars { get; set; }
         //////

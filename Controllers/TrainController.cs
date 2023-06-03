@@ -47,6 +47,9 @@ namespace Dashboard.Controllers
         {
             try
             {
+                string time = train.TrainTimeH + "." + train.TrainTimeM;
+                train.TrainTime = double.Parse(time);
+
                 train.Conductor = "Conductor";
                 train.Driver = "Driver";
                 train.CurrentLocation = "CurrentLocation";

@@ -1,3 +1,4 @@
+using Dashboard.Controllers;
 namespace Dashboard
 {
     public class Program
@@ -12,7 +13,14 @@ namespace Dashboard
             builder.Services.AddSession(o =>
                 o.IdleTimeout = TimeSpan.FromHours(1)
                 );
+            builder.Services.AddHttpClient();
+            builder.Services.AddLogging(loggingBuilder =>
+            {
+                loggingBuilder.AddConsole();
+                loggingBuilder.AddDebug();
+            });
 
+            builder.Services.AddScoped<ILogger, Logger<ProxyController>>();            //builder.Services.AddScoped<ProxyController>();
             var app = builder.Build();
 
             app.UseSession();

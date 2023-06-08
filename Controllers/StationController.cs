@@ -9,7 +9,7 @@ namespace Dashboard.Controllers
         HttpClient client = new HttpClient();
         public StationController()
         {
-            client.BaseAddress = new Uri("http://saberelsayed-001-site1.itempurl.com/api/");
+            client.BaseAddress = new Uri("http://trainlocationapi-001-site1.atempurl.com/api/");
         }
 
         [HttpGet]

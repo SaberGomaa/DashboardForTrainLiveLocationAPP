@@ -9,7 +9,7 @@ namespace Dashboard.Controllers
         public HttpClient client = new HttpClient();
         public OperationController()
         {
-            client.BaseAddress = new Uri("http://saberelsayed-001-site1.itempurl.com/api/");
+            client.BaseAddress = new Uri("http://trainlocationapi-001-site1.atempurl.com/api/");
         }
         // GET: Operation
         public ActionResult Index()
@@ -68,32 +68,37 @@ namespace Dashboard.Controllers
             }
         }
 
-
         public ActionResult FirstLogin(int id , string name , string phone) 
         { 
             return View();
         }
 
         [HttpPost]
-        public ActionResult FirstLogin(Admin admin) 
+        public async Task<ActionResult> FirstLogin(AdminCreate admin , int id) 
         {
-            try
-            {
-                admin.FirstTime = false;
-                admin.AdminDegree = "A";
-                var result = client.PutAsJsonAsync("Admin/UpdateAdmin/" + admin.Id, admin).Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("login");
-                }
-                else
-                {
-                    return View("Error");
-                }
-            }
-            catch
+            admin.FirstTime = false;
+            admin.AdminDegree = "A";
+            using var stream = admin.image.OpenReadStream();
+            using var client = new HttpClient();
+            using var content = new MultipartFormDataContent();
+
+            content.Add(new StringContent(admin.Email), "Email");
+            content.Add(new StringContent(admin.Name), "Name");
+            content.Add(new StringContent(admin.Password), "Password");
+            content.Add(new StringContent(admin.AdminDegree), "AdminDegree");
+            content.Add(new StringContent(admin.Phone), "Phone");
+            content.Add(new StringContent(admin.FirstTime.ToString()), "FirstTime");
+            content.Add(new StreamContent(stream), "image", admin.image.FileName);
+         
+            var response = await client.PutAsync("http://trainlocationapi-001-site1.atempurl.com/api/Admin/UpdateAdmin/"+admin.Id, content);
+
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("login");
+            }
+            else
+            {
+                return View("Error");
             }
         }
 

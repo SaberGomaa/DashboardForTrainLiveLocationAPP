@@ -1,4 +1,4 @@
-﻿@model Test.Models.Admin
+﻿@model Test.Models.AdminCreate
 
 @{
     Layout = null;
@@ -18,9 +18,10 @@
 </head>
 <body>
     <div class="container" style="width:550px">
-            <form asp-action="firstlogin" method="post" > 
+            <form asp-action="firstlogin" enctype="multipart/form-data"> 
                 <h1>Complete Registration Information</h1>
                 <hr />
+                    <input type="text" asp-for="Id" style="visibility:hidden;" >
                 <div class="input-box">
                     <img src="~/Attach/icons8-user-24 (1).png" />
                     <input asp-for="Name" style="border: 1px solid #1f1f1f ; border-radius : 10px; outline : none;" placeholder="FullName">
@@ -41,12 +42,18 @@
                     <input type="password" asp-for="Password" style="border: 1px solid #1f1f1f ; border-radius : 10px; outline : none;" placeholder="Password">
                     <span asp-validation-for="Password" style="color:red ; font-size : 12px ;"></span>
                 </div>
-                  <div class="input-box">
+                <div class="input-box">
                     <img src="~/Attach/icons8-lock-24.png">
                     <input type="password" asp-for="ConfirmPassword" style="border: 1px solid #1f1f1f ; border-radius : 10px; outline : none;" placeholder="Confirm Password">
                     <span asp-validation-for="ConfirmPassword" style="color:red ; font-size : 12px ;"></span>
                 </div>
-                <button type="submit">Save And Go to Login</button>
+                <div class="input-box">
+                    <input type="file" asp-for="image" style="border: 1px solid #1f1f1f ; border-radius : 10px; outline : none;" placeholder="Confirm Password">
+                    <span asp-validation-for="image" style="color:red ; font-size : 12px ;"></span>
+                </div>
+                @*<button type="submit">Save And Go to Login</button>*@
+                <input type="submit" value="Save And Go to Login" class="btn btn-primary" />
+
             </form>
          </div>
     </body>

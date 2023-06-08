@@ -1,5 +1,6 @@
 ﻿using Dashboard.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Headers;
 using Test.Models;
 
 namespace Dashboard.Controllers
@@ -12,7 +13,7 @@ namespace Dashboard.Controllers
         public NewsController(IWebHostEnvironment host)
         {
             this.host = host;
-            client.BaseAddress = new Uri("http://saberelsayed-001-site1.itempurl.com/api/");
+            client.BaseAddress = new Uri("http://trainlocationapi-001-site1.atempurl.com/api/");
         }
         // GET: News
         public ActionResult Index()
@@ -110,46 +111,79 @@ namespace Dashboard.Controllers
 
         public ActionResult Create()
         {
-            int? x = HttpContext.Session.GetInt32("AdminId");
-            if (x == null)
-            {
-                return RedirectToAction("login", "operation");
-            }
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(updateNews news, IFormFile photo)
+        public async Task<ActionResult> Create(News news, IFormFile photo)
         {
-            try
+            news.AdminId = HttpContext.Session.GetInt32("AdminId");
+            using var client = new HttpClient();
+            using var content = new MultipartFormDataContent();
+
+            content.Add(new StringContent(news.ContentOfPost), "ContentOfPost");
+            content.Add(new StringContent(news.AdminId.ToString()), "AdminId");
+
+            using var image = photo.OpenReadStream();
+            content.Add(new StreamContent(image), "image", photo.FileName);
+
+            //var imageContent = new StreamContent(photo.OpenReadStream());
+            //imageContent.Headers.ContentType = new MediaTypeHeaderValue(photo.ContentType);
+            //content.Add(imageContent, "image", photo.FileName);
+
+            var response = await client.PostAsync("http://trainlocationapi-001-site1.atempurl.com/api/news/CreateNews", content);
+
+            if (response.IsSuccessStatusCode)
             {
-                if (photo != null)
-                {
-                    string attach = Path.Combine(host.WebRootPath, "Attach");
-                    string fileName = photo.FileName;
-                    string fullPath = Path.Combine(attach, fileName);
-                    photo.CopyTo(new FileStream(fullPath, FileMode.Create));
-                }
-
-                news.Img = photo.FileName;
-
-                var result = client.PostAsJsonAsync("news/createnews", news).Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("Show");
-                }
-                else
-                {
-                    return View();
-                }
+                return RedirectToAction("Show");
             }
-            catch
+            else
             {
-                return View("Error");
+                return View();
             }
         }
+    
 
+        //public ActionResult Create()
+        //{
+        //    int? x = HttpContext.Session.GetInt32("AdminId");
+        //    if (x == null)
+        //    {
+        //        return RedirectToAction("login", "operation");
+        //    }
+        //    return View();
+        //}
 
+        //[HttpPost]
+        //public ActionResult Create(updateNews news, IFormFile photo)
+        //{
+        //    try
+        //    {
+        //        if (photo != null)
+        //        {
+        //            string attach = Path.Combine(host.WebRootPath, "Attach");
+        //            string fileName = photo.FileName;
+        //            string fullPath = Path.Combine(attach, fileName);
+        //            photo.CopyTo(new FileStream(fullPath, FileMode.Create));
+        //        }
+
+        //        news.Img = photo.FileName;
+
+        //        var result = client.PostAsJsonAsync("news/createnews", news).Result;
+        //        if (result.IsSuccessStatusCode)
+        //        {
+        //            return RedirectToAction("Show");
+        //        }
+        //        else
+        //        {
+        //            return View();
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        return View("Error");
+        //    }
+        //}
         public ActionResult Delete(int id)
         {
             try

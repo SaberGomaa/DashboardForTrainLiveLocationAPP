@@ -14,6 +14,7 @@ namespace Test.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Password { get; set; }
+        public IFormFile img { get; set; }
         public string Jop { get; set; }
         public string Address { get; set; }
         public string Gender { get; set; }
@@ -25,16 +26,11 @@ namespace Test.Models
         public ICollection<Report> reports { get; set; }
         public ICollection<Ticket> tickets { get; set; }
 
-
-
         [ForeignKey(nameof(Train))]
         public int? TrainId { get; set; }
         public virtual Train Train { get; set; }
 
         public ICollection<LiveLocation> liveLocations { get; set; }
-
-
-
 
     }
 }

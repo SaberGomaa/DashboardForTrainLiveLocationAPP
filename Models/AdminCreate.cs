@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Test.Models
 {
-    public class Admin
+    public class AdminCreate
     {
         [Column("AdminId")]
         public int Id { get; set; }
@@ -21,10 +21,9 @@ namespace Test.Models
         public string Phone { get; set; }
 
         [Required(ErrorMessage ="Required")]
-        public string image { get; set; }
-
+        public IFormFile image { get; set; }
         public string Password { get; set; }
-        
+
         [NotMapped]
         [Required(ErrorMessage = "Required")]
         [Compare("Password", ErrorMessage ="Not Matched Passwored")]

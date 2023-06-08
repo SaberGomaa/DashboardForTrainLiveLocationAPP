@@ -10,7 +10,7 @@ namespace Dashboard.Controllers
 
         public TrainController()
         {
-            client.BaseAddress = new Uri("http://saberelsayed-001-site1.itempurl.com/api/");
+            client.BaseAddress = new Uri("http://trainlocationapi-001-site1.atempurl.com/api/");
         }
 
         public ActionResult Show()

@@ -8,8 +8,8 @@ namespace Test.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Please select an image")]
-        [DataType(DataType.Upload)]
-        public string Img { get; set; }
+        public string image { get; set; }
+        public string img { get; set; }
         public DateTime? date { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "Content is Required")]

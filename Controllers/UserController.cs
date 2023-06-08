@@ -8,7 +8,7 @@ namespace Dashboard.Controllers
         public HttpClient client = new HttpClient();
         public UserController()
         {
-            client.BaseAddress = new Uri("http://saberelsayed-001-site1.itempurl.com/api/");
+            client.BaseAddress = new Uri("http://trainlocationapi-001-site1.atempurl.com/api/");
         }
 
         // GET: Admin
@@ -16,7 +16,6 @@ namespace Dashboard.Controllers
         {
             return View();
         }
-
 
         public new ActionResult Profile(int id)
         {

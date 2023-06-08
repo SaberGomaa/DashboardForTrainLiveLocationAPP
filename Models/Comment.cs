@@ -18,13 +18,8 @@ namespace Test.Models
         public int UserId { get; set; }
         public virtual User User { get; set; }
 
-
         [ForeignKey(nameof(Post))]
         public int PostId { get; set; }
         public virtual Post Post { get; set; }
-            
-        [ForeignKey(nameof(Admin))]
-        public int? AdminId { get; set; }
-        public virtual Admin Admin { get; set; }
     }
 }

@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using System.Net.Http.Headers;
+using System.Xml.Linq;
 using Test.Models;
 
 namespace Dashboard.Controllers
@@ -8,7 +11,7 @@ namespace Dashboard.Controllers
         public HttpClient client = new HttpClient();
         public AdminController()
         {
-            client.BaseAddress = new Uri("http://saberelsayed-001-site1.itempurl.com/api/");
+            client.BaseAddress = new Uri("http://trainlocationapi-001-site1.atempurl.com/api/");
         }
 
         // GET: Admin
@@ -17,6 +20,37 @@ namespace Dashboard.Controllers
             return View();
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(AdminCreate admin)
+        {
+            using var stream = admin.image.OpenReadStream();
+            using var client = new HttpClient();
+            using var content = new MultipartFormDataContent();
+
+            content.Add(new StringContent(admin.Email), "Email");
+            content.Add(new StringContent(admin.Name), "Name");
+            content.Add(new StringContent(admin.Password), "Password");
+            content.Add(new StringContent(admin.AdminDegree), "AdminDegree");
+            content.Add(new StringContent(admin.Phone), "Phone");
+            content.Add(new StringContent(admin.FirstTime.ToString()), "FirstTime");
+            content.Add(new StreamContent(stream), "image", admin.image.FileName);
+
+            var response = await client.PostAsync("http://trainlocationapi-001-site1.atempurl.com/api/Admin/CreateAdmin", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("view");
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
 
         public ActionResult Register()
         {

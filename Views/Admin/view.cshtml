@@ -15,7 +15,7 @@
     <div class="admins-grid">
         @foreach(var i in Model){
         <div class="admin">
-            <img src="~/Attach/icons8-admin-settings-male-96.png"   alt="Profile Picture">
+            <img src="/proxy/image?url=@i.image"   alt="Profile Picture">
             <div class="admin-info">
                 <h3>@i.Name</h3>
                 <p>Administrator</p>

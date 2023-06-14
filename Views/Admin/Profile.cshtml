@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Profile";
+    string image = Context.Session.GetString("AdminImage");
+
 }
 
 <!DOCTYPE html>
@@ -57,7 +59,7 @@ p{
 <body>
 	<div class="container" >
         <div class="profile" style="margin-top: 100px;height: 550px;">
-			<img src=@Model.image alt="My Profile Picture">
+			<img src="/proxy/image?url=@image"  alt="My Profile Picture">
 			<h1>@Model.Name</h1>
 			<p>Administrator</p>
 			<p>Email: @Model.Email</p>

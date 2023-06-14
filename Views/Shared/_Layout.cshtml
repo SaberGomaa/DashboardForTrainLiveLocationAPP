@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Mvc;
+@{
+    string image = Context.Session.GetString("AdminImage");
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -38,7 +42,7 @@
                  class="icn"
                  alt="">
             <a class="dp" asp-action="profile" asp-controller="admin" >
-                <img src="~/Attach/saberJ.jpg"
+                <img src="/proxy/image?url=@image"
                      class="dpicn"
                      alt="dp">
             </a>

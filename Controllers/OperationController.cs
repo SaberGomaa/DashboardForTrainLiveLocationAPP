@@ -53,6 +53,9 @@ namespace Dashboard.Controllers
                     //}
 
                     HttpContext.Session.SetInt32("AdminId", admin.Id);
+                    HttpContext.Session.SetString("AdminImage", admin.image);
+
+                    HttpContext.Session.GetString("aa");
 
                     return RedirectToAction("view", "admin");
                 }

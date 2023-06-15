@@ -82,6 +82,35 @@ namespace Dashboard.Controllers
             }
         }
 
+        public IActionResult Edit(int id)
+        {
+            var result = client.GetAsync("station/GetStationById?Id=" + id).Result;
+
+            var station = result.Content.ReadAsAsync<Station>().Result;
+
+            if (station != null)
+            {
+                //ViewBag.station = station;
+                return View(station);
+            }
+            else
+                return View();
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Station station)
+        {
+
+            var result = client.PutAsJsonAsync("station/UpdateStation?StationId="+station.Id , station).Result;
+
+            if (result.IsSuccessStatusCode)
+            {
+                 return RedirectToAction("show");
+            }
+            return RedirectToAction("Error");
+        }
+
+
         public IActionResult Delete(int id)
         {
             try

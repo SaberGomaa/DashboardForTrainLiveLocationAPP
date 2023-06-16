@@ -78,34 +78,32 @@ namespace Dashboard.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, updateNews news, IFormFile photo)
+        public async Task<ActionResult> Edit(int id , News news, IFormFile photo)
         {
-            try
+            news.AdminId = HttpContext.Session.GetInt32("AdminId");
+            using var client = new HttpClient();
+            using var content = new MultipartFormDataContent();
+
+            content.Add(new StringContent(news.ContentOfPost), "ContentOfPost");
+            content.Add(new StringContent(news.Title), "Title");
+            //content.Add(new StringContent(news.AdminId.ToString()), "AdminId");
+
+            using var image = photo.OpenReadStream();
+            content.Add(new StreamContent(image), "image", photo.FileName);
+
+            //var imageContent = new StreamContent(photo.OpenReadStream());
+            //imageContent.Headers.ContentType = new MediaTypeHeaderValue(photo.ContentType);
+            //content.Add(imageContent, "image", photo.FileName);
+
+            var response = await client.PutAsync("http://trainlocationapi-001-site1.atempurl.com/api/news/updateNews?id=" + id, content);
+
+            if (response.IsSuccessStatusCode)
             {
-                if (photo != null)
-                {
-                    string attach = Path.Combine(host.WebRootPath, "Attach");
-                    string fileName = photo.FileName;
-                    string fullPath = Path.Combine(attach, fileName);
-                    photo.CopyTo(new FileStream(fullPath, FileMode.Create));
-                }
-
-                news.Img = photo.FileName;
-
-                var result = client.PutAsJsonAsync("news/updatenews?NewsId=" + id, news).Result;
-
-                if (result.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("Show");
-                }
-                else
-                {
-                    return View("Error");
-                }
+                return RedirectToAction("Show");
             }
-            catch
+            else
             {
-                return View("Error");
+                return View();
             }
         }
 
@@ -122,6 +120,7 @@ namespace Dashboard.Controllers
             using var content = new MultipartFormDataContent();
 
             content.Add(new StringContent(news.ContentOfPost), "ContentOfPost");
+            content.Add(new StringContent(news.Title), "Title");
             content.Add(new StringContent(news.AdminId.ToString()), "AdminId");
 
             using var image = photo.OpenReadStream();

@@ -15,6 +15,9 @@ namespace Test.Models
         [Required(ErrorMessage = "Content is Required")]
         public string ContentOfPost { get; set; }
 
+        [Required(ErrorMessage = "Title is Required")]
+        public string? Title { get; set; }
+
 
         [ForeignKey(nameof(Admin))]
         public int? AdminId { get; set; }

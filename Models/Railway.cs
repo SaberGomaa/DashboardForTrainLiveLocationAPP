@@ -1,6 +1,4 @@
-﻿using Test.Models;
-
-namespace Entites.Models
+﻿namespace Test.Models
 {
     public class Railway
     {

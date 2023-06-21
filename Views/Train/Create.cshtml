@@ -1,9 +1,12 @@
-﻿@model Test.Models.Train
+﻿@using Test.Models ;
+@model Train
 
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 
 <div class="card p-3" style="display:grid;justify-content:center ; margin:100px; height:600px; box-shadow:5px 5px 5px 5px  #87CEEB ; border-radius:15px">
     <h1 class="text-center" style="color:#414141">Add New Train</h1>
@@ -26,11 +29,8 @@
             box-shadow:none; height:40px " class="form-control" placeholder="Enter Number of Cars in Train"/>
             <span asp-validation-for="NumOfTrainCars" class="text-danger"  style="font-size:12px;"></span>
         </div>
-        <div class="form-group mb-2" style="display:flex;justify-content: space-around;">  
-            <label> Houres </label>
-            <label> Minutes </label>
-        </div>  
-        <div class="form-group mb-2" style="display:flex;justify-content: space-around;">
+        
+        <div class="form-group mb-2"  style=" visibility:hidden; display:none;justify-content: space-around;">
             <select asp-for="TrainTimeH" style="font-size:14px; color:black;
             text-align:center;border: 1px solid #1f1f1f ; width:125px; border-radius : 10px;  outline:none ;
             box-shadow:none; height:40px" placeholder="Enter Train Time">
@@ -61,7 +61,7 @@
         </select>
         <select asp-for="TrainTimeM" style="font-size:14px; color:black;
             text-align:center;border: 1px solid #1f1f1f ;width:125px; border-radius : 10px;  outline:none ;
-            box-shadow:none; height:40px " placeholder="Enter Train Time">
+            box-shadow:none; height:40px; visibility:hidden; " placeholder="Enter Train Time">
               <option selected value="00">00</option>
               <option value="01">01</option>
               <option value="02">02</option>
@@ -125,16 +125,21 @@
         </select>
         </div>
        
-        <div class="form-group mb-2" >
+        <div class="form-group mb-2" style="display:none;visibility:hidden;" >
             <label asp-for="Degree"> </label>
-                 <select asp-for="Degree"  class="form-control">
-                    <option name="a">Class A</option>
+                 <select asp-for="Degree" style="visibility:hidden;" class="form-control">
+                    <option selected name="a">Class A</option>
                     <option name="b">Class B</option>
                     <option name="c">Class C</option>
                 </select>
             <span asp-validation-for="Degree" class="text-danger"  style="font-size:12px;"></span>
         </div>
        
+        <div class="form-group mb-2" >
+            <select asp-for="RailwayId" asp-items="@ViewBag.Railways" class="form-control"></select>
+            <span asp-validation-for="RailwayId" class="text-danger"  style="font-size:12px;"></span>
+        </div>
+
         <div class="form-group text-center">
             <input type="submit" value="Add Now!" class="btn btn-primary"/> 
         </div>

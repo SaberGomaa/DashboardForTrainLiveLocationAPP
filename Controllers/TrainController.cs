@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using Test.Models;
+﻿using Test.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Dashboard.Controllers
 {
@@ -24,6 +24,8 @@ namespace Dashboard.Controllers
                 }
                 var result = client.GetAsync("Train/GetTrains").Result;
                 var trains = result.Content.ReadAsAsync<List<Train>>().Result;
+
+
                 return View(trains);
             }
             catch
@@ -32,13 +34,21 @@ namespace Dashboard.Controllers
             }
         }
 
-        public ActionResult Create()
+        public async Task<IActionResult> Create()
         {
             int? x = HttpContext.Session.GetInt32("AdminId");
             if (x == null)
             {
+                 
+
                 return RedirectToAction("login", "operation");
             }
+            var result = await client.GetAsync("Railway/GetAllRailways");
+            var Railways = await result.Content.ReadAsAsync<List<Railway>>();
+
+            SelectList railways = new SelectList(Railways, "Id", "Name");
+
+            ViewBag.Railways = railways;
             return View();
         }
 

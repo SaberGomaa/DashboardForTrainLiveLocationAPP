@@ -1,4 +1,4 @@
-﻿using Entites.Models;
+﻿using Test.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Dashboard.Controllers

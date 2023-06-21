@@ -82,15 +82,20 @@ namespace Dashboard.Controllers
             }
         }
 
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var result = client.GetAsync("station/GetStationById?Id=" + id).Result;
+            var result = await client.GetAsync("station/GetStationById?Id=" + id);
 
-            var station = result.Content.ReadAsAsync<Station>().Result;
+            var station = await result.Content.ReadAsAsync<Station>();
 
             if (station != null)
             {
-                //ViewBag.station = station;
+                var res = await client.GetAsync("Railway/GetAllRailways");
+                var Railways = await res.Content.ReadAsAsync<List<Railway>>();
+
+                SelectList railways = new SelectList(Railways, "Id", "Name");
+
+                ViewBag.Railways = railways;
                 return View(station);
             }
             else
@@ -98,10 +103,10 @@ namespace Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Station station)
+        public async Task<IActionResult> Edit(Station station)
         {
 
-            var result = client.PutAsJsonAsync("station/UpdateStation?StationId="+station.Id , station).Result;
+            var result = await client.PutAsJsonAsync("station/UpdateStation?StationId="+station.Id , station);
 
             if (result.IsSuccessStatusCode)
             {

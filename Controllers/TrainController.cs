@@ -79,7 +79,7 @@ namespace Dashboard.Controllers
             }
         }
 
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             try
             {
@@ -90,6 +90,12 @@ namespace Dashboard.Controllers
                 }
                 var result = client.GetAsync("train/GetTrainById?Id=" + id).Result;
                 var train = result.Content.ReadAsAsync<Train>().Result;
+
+                var res = await client.GetAsync("Railway/GetAllRailways");
+                var Railways = await res.Content.ReadAsAsync<List<Railway>>();
+
+                SelectList railways = new SelectList(Railways, "Id", "Name");
+                ViewBag.Railways = railways;
 
                 return View(train);
             }

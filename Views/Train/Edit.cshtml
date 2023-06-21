@@ -5,38 +5,30 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
 
-<h4>Train</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Degree" class="control-label"></label>
-               <select asp-for="Degree"  class="form-control">
-                    <option name="a">Class A</option>
-                    <option name="b">Class B</option>
-                    <option name="c">Class C</option>
-                </select>
-                <span asp-validation-for="Degree" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumOfSeat" class="control-label"></label>
-                <input asp-for="NumOfSeat" class="form-control" />
-                <span asp-validation-for="NumOfSeat" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TrainNumber" class="control-label"></label>
-                <input asp-for="TrainNumber" class="form-control" />
-                <span asp-validation-for="TrainNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumOfTrainCars" class="control-label"></label>
-                <input asp-for="NumOfTrainCars" class="form-control" />
-                <span asp-validation-for="NumOfTrainCars" class="text-danger"></span>
-            </div>
+<div class="card p-3" style="display:grid;justify-content:center ; margin:100px; height:600px; box-shadow:5px 5px 5px 5px  #87CEEB ; border-radius:15px">
+    <h1 class="text-center" style="color:#414141">Edit Train</h1>
+    <hr />
+    <form asp-action="Edit">
+
+        <div class="form-group mb-2" >
+            <input asp-for="NumOfSeat" style="font-size:14px; color:black;
+            text-align:center;border: 1px solid #1f1f1f ; border-radius : 10px;  outline:none ;
+            box-shadow:none; height:40px " class="form-control" placeholder="Enter Num Of Seats"/>
+            <span asp-validation-for="NumOfSeat" class="text-danger"  style="font-size:12px;"></span>
+        </div>
+        <div class="form-group mb-2" >
+            <input asp-for="TrainNumber" style="font-size:14px; color:black;
+            text-align:center;border: 1px solid #1f1f1f ; border-radius : 10px;  outline:none ;
+            box-shadow:none; height:40px " class="form-control" placeholder="Enter TrainNumber"/>
+            <span asp-validation-for="TrainNumber" class="text-danger"  style="font-size:12px;"></span>
+        </div>
+        <div class="form-group mb-2" >
+            <input asp-for="NumOfTrainCars" style="font-size:14px; color:black;
+            text-align:center;border: 1px solid #1f1f1f ; border-radius : 10px;  outline:none ;
+            box-shadow:none; height:40px " class="form-control" placeholder="Enter Number Of Train Cars"/>
+            <span asp-validation-for="NumOfTrainCars" class="text-danger"  style="font-size:12px;"></span>
+        </div>
             <div class="form-group  visually-hidden" >
                 <label asp-for="Conductor" class="control-label"></label>
                 <input asp-for="Conductor" class="form-control" />
@@ -52,14 +44,22 @@
                 <input asp-for="CurrentLocation" class="form-control" />
                 <span asp-validation-for="CurrentLocation" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+        <div class="form-group mb-2" >
+            <select asp-for="RailwayId" asp-items="@ViewBag.Railways" class="form-control"></select>
+            <span asp-validation-for="RailwayId" class="text-danger"  style="font-size:12px;"></span>
             </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+             <div class="form-group" style="display:none;">
+                <label asp-for="Degree" class="control-label"></label>
+               <select asp-for="Degree"  class="form-control">
+                    <option name="a">Class A</option>
+                    <option name="b">Class B</option>
+                    <option name="c">Class C</option>
+                </select>
+                <span asp-validation-for="Degree" class="text-danger"></span>
+            </div>
+        <div class="form-group text-center">
+            <input type="submit" value="Edit Now!" class="btn btn-primary"/> 
+        </div>
+    </form>
 </div>
 

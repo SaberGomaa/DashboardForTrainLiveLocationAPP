@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Entites.Models.Railway>
+
+@{
+    ViewData["Title"] = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" href="~/css/ViewAdminsStyle.css"/>
+
+ <a asp-action="Create" asp-controller="Railway" style="margin:15px"> 
+     <img src="~/Attach/icons8-add-96.png" width="50" height="50"/>
+     New Railway
+ </a>
+
+<main style="margin:10px;">
+    <div class="admins-grid">
+        @foreach (var i in Model)
+        {
+            <div class="admin">
+                <img src="~/Attach/icons8-railway-50.png" alt="Profile Picture">
+                <div class="admin-info">
+                    <h3>Railway Id  @i.Id</h3>
+                    <ul>
+                        <li><strong>Railway Name</strong> @i.Name</li>
+                        <li><strong>Description </strong> @i.Description</li>
+                        <li><strong>Start Station</strong> @i.StartStation</li>
+                        <li><strong>LastStation</strong> @i.LastStation</li>
+
+                    </ul>
+                </div>
+                <div style="display:flex; justify-content:space-between">
+                    <a asp-action="Edit" asp-controller="Railway" asp-route-id="@i.Id" class="btn btn-info " style="margin-right:15px"> Edit </a>
+                    <a asp-action="delete" asp-controller="Railway" asp-route-id="@i.Id" class="btn btn-danger"> Delete </a>
+                </div>
+            </div>
+        }
+    </div>
+</main>

@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Net;
-using System.Net.Http.Headers;
-using System.Xml.Linq;
 using Test.Models;
 
 namespace Dashboard.Controllers
@@ -14,11 +11,7 @@ namespace Dashboard.Controllers
             client.BaseAddress = new Uri("http://trainlocationapi-001-site1.atempurl.com/api/");
         }
 
-        // GET: Admin
-        public ActionResult Index()
-        {
-            return View();
-        }
+      
 
         public ActionResult Create()
         {

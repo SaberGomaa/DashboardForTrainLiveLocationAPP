@@ -1,0 +1,39 @@
+﻿@model Entites.Models.Railway
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card p-3" style="display:grid;justify-content:center ; margin:100px; height:600px; box-shadow:5px 5px 5px 5px  #87CEEB ; border-radius:15px">
+    <h1 class="text-center" style="color:#414141">Add New Railway</h1>
+    <hr />
+    <form asp-action="create" enctype="multipart/form-data" >
+        <div class="form-group mb-2" >
+            <input asp-for="Name" min="1" style="font-size:14px; color:black; text-align:center;border: 1px solid #1f1f1f ; border-radius : 10px; 
+            outline:none ; box-shadow:none; height:40px " class="form-control" placeholder="Enter Railway Name"/>
+            <span asp-validation-for="Name" class="text-danger"  style="font-size:12px;"></span>
+        </div>
+           <div class="form-group mb-2" >
+            <input asp-for="Description" style="font-size:14px; color:black; 
+            text-align:center;border: 1px solid #1f1f1f ; border-radius : 10px; 
+            outline:none ; box-shadow:none; height:40px " class="form-control" placeholder="Enter Description"/>
+            <span asp-validation-for="Description" class="text-danger"  style="font-size:12px;"></span>
+        </div>
+        <div class="form-group mb-2" >
+            <input asp-for="StartStation" style="font-size:14px; color:black;
+            text-align:center;border: 1px solid #1f1f1f ; border-radius : 10px;  outline:none ;
+            box-shadow:none; height:40px " class="form-control" placeholder="Enter Start Station"/>
+            <span asp-validation-for="StartStation" class="text-danger"  style="font-size:12px;"></span>
+        </div>
+         <div class="form-group mb-2" >
+            <input asp-for="LastStation" style="font-size:14px; color:black;
+            text-align:center;border: 1px solid #1f1f1f ; border-radius : 10px;  outline:none ;
+            box-shadow:none; height:40px " class="form-control" placeholder="Enter Last Station"/>
+            <span asp-validation-for="LastStation" class="text-danger"  style="font-size:12px;"></span>
+        </div>
+      <div class="form-group text-center">
+            <input type="submit" value="Add Now!" class="btn btn-primary"/> 
+        </div>
+    </form>
+</div>

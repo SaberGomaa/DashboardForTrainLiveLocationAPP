@@ -26,6 +26,7 @@ namespace Test.Models
         public string? Driver { get; set; }
         ///////
         public string? CurrentLocation { get; set; }
+        public int? RailwayId { get; set; }
 
         public ICollection<LiveLocation> liveLocations { get; set; }
 

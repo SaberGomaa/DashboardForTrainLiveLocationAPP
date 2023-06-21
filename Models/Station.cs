@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Test.Models
 {
@@ -18,6 +17,8 @@ namespace Test.Models
         public double Longitude { get; set; }
         [Required(ErrorMessage ="Required")]
         public double Latitude { get; set; }
+        public int? NextStationPostion { get; set; }
+        public int? RailwayId { get; set; }
 
         //[ForeignKey(nameof(Train))]
         //public int TrainId { get; set; }

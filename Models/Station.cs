@@ -17,6 +17,7 @@ namespace Test.Models
         public double Longitude { get; set; }
         [Required(ErrorMessage ="Required")]
         public double Latitude { get; set; }
+        [Required(ErrorMessage ="Required")]
         public int? NextStationPostion { get; set; }
         public int? RailwayId { get; set; }
 

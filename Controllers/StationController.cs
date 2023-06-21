@@ -36,7 +36,7 @@ namespace Dashboard.Controllers
         }
 
 
-        public ActionResult Create()
+        public async Task<IActionResult> Create()
         {
             try
             {
@@ -45,12 +45,12 @@ namespace Dashboard.Controllers
                 {
                     return RedirectToAction("login", "operation");
                 }
-                var result = client.GetAsync("Train/GetTrains").Result;
-                var trains = result.Content.ReadAsAsync<List<Train>>().Result;
+                var result = await client.GetAsync("Railway/GetAllRailways");
+                var Railways = await result.Content.ReadAsAsync<List<Railway>>();
 
-                List<int> selTrains = trains.Select(x => x.Id).ToList();
+                SelectList railways = new SelectList(Railways, "Id", "Name");
 
-                ViewBag.Trains = selTrains;
+                ViewBag.Railways = railways;
 
                 return View();
             }

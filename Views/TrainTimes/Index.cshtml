@@ -7,11 +7,7 @@
 <form class="d-flex justify-content-center gap-3 mt-4">
     <select name="Id" asp-items="@ViewBag.Railways" style="height:40px ; width:350px; border-radius:20px; text-align:center; border:1px solid black ; outline:none;"></select>
     <button type="submit" asp-action="View"  asp-controller="TrainTimes" class="btn" style="height:40px ; width:fit-content; border-radius:20px; text-align:center; border:1px solid #eee ; background-color:#06cfff; color:black" > View Trains Times </button> 
-    <button type="submit" asp-action="Add" asp-controller="TrainTimes" class="btn" style="height:40px ; width:fit-content; border-radius:20px; text-align:center; border:1px solid #eee ; background-color:#06cfff; color:black">Add Train Times </button> 
+    <button type="submit" asp-action="Add" id="loadPartialViewButton" asp-controller="TrainTimes" class="btn" style="height:40px ; width:fit-content; border-radius:20px; text-align:center; border:1px solid #eee ; background-color:#06cfff; color:black">Add Train Times </button> 
 </form>
-
 <hr />
-
-
-
 </div>

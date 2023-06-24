@@ -1,11 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.Build.Framework;
 
-namespace Entites.Models
+namespace Test.Models
 {
     public class TrainInStationTime
     {
+        [Required]
         public int StationId { get; set; }
+        [Required]
         public int TrainId { get; set; }
+        [Required]
         public double TrainTime { get; set; }
 
     }

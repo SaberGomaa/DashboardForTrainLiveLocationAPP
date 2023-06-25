@@ -9,8 +9,8 @@
     <h1 class="text-center" style="color:#414141">Add Train Time</h1>
     <hr />
     
-    <span style="color:green; font-size:16px; text-align:center"> @ViewBag.msg1 </span>
-    <span style="color:red; font-size:16px; text-align:center"> @ViewBag.msg2 </span>
+    <span id="mySpan" style="color:green; font-size:16px; text-align:center"> @ViewBag.msg1 </span>
+    <span id="mySpan1" style="color:red; font-size:16px; text-align:center"> @ViewBag.msg2 </span>
 
     <form asp-action="Add" enctype="multipart/form-data" >
         <input hidden name="id"  type="number" value=@ViewBag.id />
@@ -125,3 +125,11 @@
     </form>
 </div>
 
+<script>
+  setTimeout(function() {
+  document.getElementById("mySpan").style.display = "none";
+}, 4000);
+setTimeout(function() {
+  document.getElementById("mySpan1").style.display = "none";
+}, 4000);
+</script>

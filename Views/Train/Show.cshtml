@@ -7,8 +7,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
 <link rel="stylesheet" href="~/css/ViewAdminsStyle.css"/>
 
  <a asp-action="Create" asp-controller="train" style="margin:15px"> 
@@ -23,7 +21,7 @@
             <div class="admin">
                 <img src="~/Attach/icons8-railway-station-96.png" alt="Profile Picture">
                 <div class="admin-info">
-                    <h3>Train Number @i.Id</h3>
+                    <h3>Train Number @i.TrainNumber</h3>
                     <ul>
                         <li><strong>Number Of Seats :</strong> @i.NumOfSeat</li>
                         <li><strong>Cars Number:</strong> @i.NumOfTrainCars</li>

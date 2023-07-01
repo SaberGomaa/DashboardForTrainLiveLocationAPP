@@ -1,4 +1,5 @@
 ﻿using Dashboard.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Test.Models;
 
@@ -24,6 +25,23 @@ namespace Dashboard.Controllers
             //    Session["Admin"] = Request.Cookies["logindata"].Values["Admin"].ToString();
             //    return RedirectToAction("show", "user");
             //}
+
+           
+
+            if (Request.Cookies["id"] != null)
+            {
+                string id = Request.Cookies["id"];
+                string name = Request.Cookies["name"];
+                string image = Request.Cookies["image"];
+
+                HttpContext.Session.SetInt32("AdminId", int.Parse(id));
+                HttpContext.Session.SetString("AdminImage", image);
+                HttpContext.Session.SetString("AdminName", name);
+
+                return RedirectToAction("view", "admin");
+
+            }
+
             return View();
         }
 
@@ -40,20 +58,22 @@ namespace Dashboard.Controllers
                 if (admin != null)
                 {
 
-                    //if (saveme == true)
-                    //{
-                    //    HttpCookie co = new HttpCookie("logindata");
-                    //    co.Values.Add("id", admin.Id.ToString());
-                    //    co.Values.Add("name", admin.Name);
-                    //    co.Values.Add("Admin", admin.ToString());
+                    if (saveMe == true)
+                    {
+                        var options = new CookieOptions
+                        {
+                            Expires = DateTime.Now.AddDays(10)
+                        };
 
-                    //    co.Expires = DateTime.Now.AddDays(1);
+                        Response.Cookies.Append("id", admin.Id.ToString(), options);
+                        Response.Cookies.Append("name", admin.Name, options);
+                        Response.Cookies.Append("image", admin.image, options);
 
-                    //    Response.Cookies.Add(co);
-                    //}
+                    }
 
                     HttpContext.Session.SetInt32("AdminId", admin.Id);
                     HttpContext.Session.SetString("AdminImage", admin.image);
+                    HttpContext.Session.SetString("AdminName", admin.Name);
 
                     HttpContext.Session.GetString("aa");
 
@@ -107,7 +127,15 @@ namespace Dashboard.Controllers
 
         public ActionResult Logout()
         {
-            HttpContext.Session.SetInt32("AdminId", 0);
+
+            var options = new CookieOptions
+            {
+                Expires = DateTime.Now.AddDays(-11)
+            };
+
+            Response.Cookies.Delete("id", options);
+            Response.Cookies.Delete("name", options);
+            Response.Cookies.Delete("image", options);
 
             return RedirectToAction("login");
         }
